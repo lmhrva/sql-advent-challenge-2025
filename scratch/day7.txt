@@ -1,0 +1,46 @@
+Here is the stuff that happened for the day 7 prompt:
+
+Frosty wants to know how many unique snowflake types were recorded on the December 24th, 2025 storm. Can you help him?
+
+Tables
+snowfall_log(flake_id, flake_type, fall_time)
+
+FIRST TRY:
+select count(distinct flake_type)
+from snowfall_log
+where fall_time = to_date('12-24-2025', 'mm-dd-yyyy');
+
+RESPONSE:
+You're very close! Your use of COUNT(DISTINCT flake_type) is spot on for counting unique snowflake types.
+One small thing to watch out for: the fall_time column is a timestamp, and you want to filter by the date part only. Using fall_time = to_date(...) might not work as expected because it compares the full timestamp, including time.
+Think about how you can extract just the date from the timestamp to compare it properly.
+
+
+ANSWER:
+select count(distinct flake_type)
+from snowfall_log
+where fall_time < to_date('12-25-2025', 'mm-dd-yyyy')
+    and fall_time > to_date('12-23-2025', 'mm-dd-yyyy');
+-- 8
+
+THAT'S CORRECT!
+
+FOLLOW UP:
+Learn how to extract a date from a timestamp to make this better.
+
+DATA:
+I checked by putting the data in Excel and created in pivot table:	
+
+Row Labels	Count of flake_id
+23-Dec	1
+Needle	1
+24-Dec	27
+Capped Column	3
+Column	3
+Fernlike Stellar	2
+Needle	3
+Plate Crystal	4
+Rimed Crystal	2
+Sectored Plate	3
+Stellar Dendrite	7
+Grand Total	28
