@@ -1,5 +1,5 @@
 # SQL Advent Calendar 2025 Challenge
-This repository contains my notes and solutions for the [SQL Advent Calendar 2025 Challenge](https://www.interviewmaster.ai/advent/home) created by Dawn Choo of the Interview Master data prep platform.
+This repository contains my notes and solutions for the [SQL Advent Calendar 2025 Challenge](https://www.interviewmaster.ai/advent/home) created by Dawn Choo of the Interview Master data prep platform. Each day unlocks a SQL question to solve from the start of December until Christmas Day, 12/25/2025.
 
 ## Daily Log
 | Day | Topic | Difficulty Level | Status | Notes |
