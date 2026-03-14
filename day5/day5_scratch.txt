@@ -17,3 +17,99 @@ join vacations on elves.elf_id = vacations.elf_id;
 ERROR:
 syntax error at or near "from"
 
+CHAT:
+query:
+I used a case statement:
+select elf_id, CASE WHEN return_date is null THEN 'Still resting' ELSE return_date END from vacations;
+The error is: invalid input syntax for type date: "Still resting" What is it asking for? Why doesn't it just return a string?
+
+response:
+Great question! The error happens because your CASE statement is returning mixed data types in the same column: a string ('Still resting') and a date (return_date). In SQL, a single column must have a consistent data type, so it tries to convert everything to a date, but 'Still resting' can't be cast as a date, causing the error.
+What the question is asking for is to show the return date as text, so you need to convert the date to a string before mixing it with the text 'Still resting'.
+
+ATTEMPT:
+select
+  CASE
+    WHEN return_date is null THEN 'Still resting'
+    ELSE CAST(return_date, 'YYYY-MM-DD')
+  END
+from vacations;
+
+ERROR:
+syntax error at or near ","
+
+Chat response:
+'re on the right track wanting to cast the date to text! The error you're seeing is because the CAST syntax in PostgreSQL doesn't take a format string like 'YYYY-MM-DD'. Instead, CAST just converts the data type without formatting.
+To format a date as a string in a specific pattern, you want to use the TO_CHAR function in PostgreSQL.
+
+This works now:
+select
+  CASE
+    WHEN return_date is null THEN 'Still resting'
+    ELSE to_char(return_date, 'YYYY-MM-DD')
+  END
+from vacations;
+
+Now to figure out how to join with table elves...
+select a.elf_name,
+  CASE
+    WHEN b.return_date is null THEN 'Still resting'
+    ELSE to_char(b.return_date, 'YYYY-MM-DD')
+  END return_date
+from elves a
+  join vacations b ON
+  a.elf_id = b.elf_id;
+
+This produces a join that looks right to me... WAIT who is Ribbon??? That's showing up as if it is in the elves table and not vacations, but it's not in either!
+  Oh, I'm not returning all the elf names. Need a left join.
+
+CHAT:
+query:
+  I chanted it to a left join: select a.elf_name, CASE WHEN b.return_date is null THEN 'Still resting' ELSE to_char(b.return_date, 'YYYY-MM-DD') END return_date from elves a left join vacations b ON a.elf_id = b.elf_id;
+It's still not quite right. I see all the elf names and return dates, what am I missing?
+
+response:
+You're very close! Your query is correctly joining all elves and showing their return dates or "Still resting" when null.
+One thing to consider: If an elf has multiple vacation records, your query will show multiple rows for that elf, one per vacation. The question likely expects just one row per elf with their return date.
+
+Added a DISTINCT:
+select distinct a.elf_name,
+  CASE
+    WHEN b.return_date is null THEN 'Still resting'
+    ELSE to_char(b.return_date, 'YYYY-MM-DD')
+  END return_date
+from elves a
+  left join vacations b ON a.elf_id = b.elf_id;
+
+response:
+Good attempt with DISTINCT! However, DISTINCT removes exact duplicate rows, but if an elf has multiple different return dates, those rows are all unique, so DISTINCT won’t reduce them to one row per elf.
+Think about how you might pick just one return date per elf—maybe the most recent, earliest, or some other rule. What aggregation or filtering technique could help you get a single return date per elf before joining or in your query?
+
+
+ATTEMPT:
+select a.elf_name,
+  CASE
+    WHEN b.return_date is null THEN 'Still resting'
+    ELSE to_char(b.return_date, 'YYYY-MM-DD')
+  END return_date
+from elves a
+  left join vacations b ON a.elf_id = b.elf_id
+group by a.elf_name, b.return_date
+  order by b.return_date desc;
+
+
+ATTEMPT:
+select distinct a.elf_name,
+  CASE
+    WHEN b.return_date is null THEN 'Still resting'
+    ELSE to_char(b.return_date, 'YYYY-MM-DD')
+  END return_date
+from elves a
+  left join vacations b ON a.elf_id = b.elf_id
+group by a.elf_name, b.return_date
+  having max(b.return_date);
+
+ERRROR: argument of HAVING must be type boolean, not type date
+
+
+Ughhhhhh trying this next: https://stackoverflow.com/questions/3800551/select-first-row-in-each-group-by-group/7630564#7630564

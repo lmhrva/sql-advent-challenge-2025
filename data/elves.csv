@@ -1,25 +1,26 @@
-elf_id,elf_name
-1,Jinglebell
-2,Sparkle
-3,Tinsel
-4,Snowflake
-5,Mistletoe
-6,Gingerbread
-7,Peppermint
-8,Frosty
-9,Cocoa
-10,Cinnamon
-11,Holly
-12,Evergreen
-13,Starlight
-14,Sugarplum
-15,Nutmeg
-16,Twinkle
-17,Ginger
-18,Candy
-19,Merry
-20,Jolly
-21,Blitzen
-22,Chestnut
-23,Cookie
-24,Clove
+elf_id,elf_name,,elf_name,return_date,,elf_name,return_date,,elf_name,return_date
+1,Jinglebell,,Blitzen,Still resting,,Blitzen,Still resting,,Blitzen,Still resting
+2,Sparkle,,Candy,Still resting,,Candy,Still resting,,Candy,Still resting
+3,Tinsel,,Chestnut,Still resting,,Chestnut,Still resting,,Chestnut,Still resting
+4,Snowflake,,Cinnamon,1/2/2025,,Cinnamon,1/2/2025,,Clove,Still resting
+5,Mistletoe,,Clove,Still resting,,Clove,Still resting,,Cocoa,Still resting
+6,Gingerbread,,Cocoa,Still resting,,Cocoa,Still resting,,Frosty,Still resting
+7,Peppermint,,Cookie,1/5/2025,,Cookie,1/5/2025,,Gingerbread,Still resting
+8,Frosty,,Evergreen,1/6/2025,,Evergreen,1/6/2025,,Holly,Still resting
+9,Cocoa,,Frosty,Still resting,,Frosty,Still resting,,Merry,Still resting
+10,Cinnamon,,Ginger,1/7/2025,,Ginger,1/7/2025,,Nutmeg,Still resting
+11,Holly,,Gingerbread,Still resting,,Gingerbread,Still resting,,Ribbon,Still resting
+12,Evergreen,,Holly,Still resting,,Holly,Still resting,,Snowflake,Still resting
+13,Starlight,,Jinglebell,1/5/2025,,Jinglebell,1/5/2025,,Starlight,Still resting
+14,Sugarplum,,Jolly,1/9/2025,,Jolly,1/9/2025,,Tinsel,Still resting
+15,Nutmeg,,Merry,Still resting,,Merry,Still resting,,Twinkle,Still resting
+16,Twinkle,,Mistletoe,1/3/2025,,Mistletoe,1/3/2025,,Peppermint,1/10/2025
+17,Ginger,,Nutmeg,Still resting,,Nutmeg,Still resting,,Jolly,1/9/2025
+18,Candy,,Peppermint,1/10/2025,,Peppermint,1/10/2025,,Sparkle,1/8/2025
+19,Merry,,Ribbon,Still resting,,Ribbon,Still resting,,Ginger,1/7/2025
+20,Jolly,,Snowflake,Still resting,,Snowflake,Still resting,,Evergreen,1/6/2025
+21,Blitzen,,Sparkle,1/8/2025,,Sparkle,1/8/2025,,Cookie,1/5/2025
+22,Chestnut,,Starlight,Still resting,,Starlight,Still resting,,Jinglebell,1/5/2025
+23,Cookie,,Sugarplum,1/4/2025,,Sugarplum,1/4/2025,,Sugarplum,1/4/2025
+24,Clove,,Tinsel,Still resting,,Tinsel,Still resting,,Mistletoe,1/3/2025
+,,,Twinkle,Still resting,,Twinkle,Still resting,,Cinnamon,1/2/2025
